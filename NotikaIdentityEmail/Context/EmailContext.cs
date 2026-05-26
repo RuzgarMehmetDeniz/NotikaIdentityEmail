@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NotikaIdentityEmail.Entites;
+using NotikaIdentityEmail.Entities;
 
 namespace NotikaIdentityEmail.Context
 {
@@ -10,6 +10,9 @@ namespace NotikaIdentityEmail.Context
         {
             optionsBuilder.UseSqlServer("Server=NıTRO-AN515-57;initial Catalog=NotikaEmailDb;integrated Security=true; trust server certificate=true");
         }
-
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

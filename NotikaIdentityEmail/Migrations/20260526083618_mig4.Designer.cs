@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NotikaIdentityEmail.Context;
 
@@ -11,9 +12,11 @@ using NotikaIdentityEmail.Context;
 namespace NotikaIdentityEmail.Migrations
 {
     [DbContext(typeof(EmailContext))]
-    partial class EmailContextModelSnapshot : ModelSnapshot
+    [Migration("20260526083618_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,9 +164,6 @@ namespace NotikaIdentityEmail.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ActivationCode")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -406,7 +406,7 @@ namespace NotikaIdentityEmail.Migrations
             modelBuilder.Entity("NotikaIdentityEmail.Entities.Comment", b =>
                 {
                     b.HasOne("NotikaIdentityEmail.Entities.AppUser", "AppUser")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -423,11 +423,6 @@ namespace NotikaIdentityEmail.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("NotikaIdentityEmail.Entities.AppUser", b =>
-                {
-                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

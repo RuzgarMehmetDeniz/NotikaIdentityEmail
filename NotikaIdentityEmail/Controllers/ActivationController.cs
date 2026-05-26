@@ -9,6 +9,7 @@ namespace NotikaIdentityEmail.Controllers
         public ActivationController(EmailContext context)
         {
             _context = context;
+
         }
 
         [HttpGet]

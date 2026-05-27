@@ -10,7 +10,6 @@ namespace NotikaIdentityEmail.Controllers
         {
             _context = context;
         }
-
         [HttpGet]
         public IActionResult UserActivation()
         {

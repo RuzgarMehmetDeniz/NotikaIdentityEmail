@@ -17,6 +17,7 @@ namespace NotikaIdentityEmail.Controllers
             TempData["Test1"] = email;
             return View();
         }
+
         [HttpPost]
         public IActionResult UserActivation(int userCodeParameter)
         {

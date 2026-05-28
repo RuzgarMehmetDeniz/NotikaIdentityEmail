@@ -18,6 +18,7 @@ namespace NotikaIdentityEmail.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult UserActivation(int userCodeParameter)
         {

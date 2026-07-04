@@ -3,7 +3,6 @@ using NotikaIdentityEmail.Context;
 
 namespace NotikaIdentityEmail.Controllers
 {
-
     public class ActivationController : Controller
     {
         private readonly EmailContext _context;

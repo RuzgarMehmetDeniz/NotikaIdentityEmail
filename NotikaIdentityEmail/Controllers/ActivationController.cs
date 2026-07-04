@@ -14,15 +14,15 @@ namespace NotikaIdentityEmail.Controllers
         [HttpGet]
         public IActionResult UserActivation()
         {
-            var email = TempData["NotikaMove"];
-            TempData["Ders1"] = email;
+            var email = TempData["EmailMove"];
+            TempData["Test1"] = email;
             return View();
         }
 
         [HttpPost]
         public IActionResult UserActivation(int userCodeParameter)
         {
-            string email = TempData["Ders1"].ToString();
+            string email = TempData["Test1"].ToString();
             var code = _context.Users.Where(x => x.Email == email).Select(y => y.ActivationCode).FirstOrDefault();
 
             if (userCodeParameter == code)

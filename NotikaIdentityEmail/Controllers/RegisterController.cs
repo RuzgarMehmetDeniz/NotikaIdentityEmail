@@ -45,7 +45,7 @@ namespace NotikaIdentityEmail.Controllers
 
                 MimeMessage mimeMessage = new MimeMessage();
 
-                MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", "deneme@gmail.com");
+                MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", "ruzgarmehmetdeniz@gmail.com");
                 mimeMessage.From.Add(mailboxAddressFrom);
 
                 MailboxAddress mailboxAddressTo = new MailboxAddress("User", model.Email);
@@ -59,7 +59,7 @@ namespace NotikaIdentityEmail.Controllers
 
                 SmtpClient client = new SmtpClient();
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("deneme@gmail.com", "asdjaeeelsdbae");
+                client.Authenticate("ruzgarmehmetdeniz@gmail.com", "kknipzdrzagjvxtu");
                 client.Send(mimeMessage);
                 client.Disconnect(true);
 

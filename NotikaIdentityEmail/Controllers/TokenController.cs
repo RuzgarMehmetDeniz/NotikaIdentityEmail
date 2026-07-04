@@ -21,9 +21,9 @@ namespace NotikaIdentityEmail.Controllers
         }
 
         [HttpPost]
-
         public IActionResult Generate(SimpleUserViewModel simpleUserViewModel)
         {
+
             var claim = new[]
             {
                 new Claim("name",simpleUserViewModel.Name),

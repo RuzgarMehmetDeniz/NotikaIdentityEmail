@@ -11,6 +11,7 @@ namespace NotikaIdentityEmail.Controllers
     {
         private readonly EmailContext _context;
         private readonly UserManager<AppUser> _userManager;
+
         public MessageController(EmailContext context, UserManager<AppUser> userManager)
         {
             _context = context;
@@ -32,6 +33,7 @@ namespace NotikaIdentityEmail.Controllers
                           where m.ReceiverEmail == user.Email
                           select new MessageWithSenderInfoViewModel
                           {
+
                               MessageId = m.MessageId,
                               MessageDetail = m.MessageDetail,
                               Subject = m.Subject,
@@ -49,6 +51,7 @@ namespace NotikaIdentityEmail.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
+
             var values = (from m in _context.Messages
                           join u in _context.Users
                           on m.ReceiverEmail equals u.Email into userGroup
@@ -58,9 +61,11 @@ namespace NotikaIdentityEmail.Controllers
                           on m.CategoryId equals c.CategoryId into categoryGroup
                           from category in categoryGroup.DefaultIfEmpty()
 
+
                           where m.SenderEmail == user.Email
                           select new MessageWithReceiverInfoViewModel
                           {
+
                               MessageId = m.MessageId,
                               MessageDetail = m.MessageDetail,
                               Subject = m.Subject,
@@ -76,6 +81,7 @@ namespace NotikaIdentityEmail.Controllers
 
         public IActionResult MessageDetail(int id)
         {
+
             var value = _context.Messages.Where(x => x.MessageId == id).FirstOrDefault();
             return View(value);
         }
@@ -83,6 +89,7 @@ namespace NotikaIdentityEmail.Controllers
         [HttpGet]
         public IActionResult ComposeMessage()
         {
+
             var categories = _context.Categories.ToList();
             ViewBag.v = categories.Select(c => new SelectListItem
             {
@@ -91,6 +98,7 @@ namespace NotikaIdentityEmail.Controllers
             }).ToList();
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> ComposeMessage(Message message)
@@ -104,6 +112,7 @@ namespace NotikaIdentityEmail.Controllers
             _context.SaveChanges();
             return RedirectToAction("Sendbox");
         }
+
 
         public async Task<IActionResult> GetMessageListByCategory(int id)
         {

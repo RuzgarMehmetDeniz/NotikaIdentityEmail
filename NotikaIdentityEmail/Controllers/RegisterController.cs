@@ -26,6 +26,7 @@ namespace NotikaIdentityEmail.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(RegisterUserViewModel model)
         {
+
             Random rnd = new Random();
             int code = rnd.Next(100000, 1000000);
             AppUser appUser = new AppUser()
@@ -41,11 +42,10 @@ namespace NotikaIdentityEmail.Controllers
 
             if (result.Succeeded)
             {
-                //Buraya mail kodları gelecek (pedw mvuj hbzg uohq)
 
                 MimeMessage mimeMessage = new MimeMessage();
 
-                MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", "projekursapi@gmail.com");
+                MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", "deneme@gmail.com");
                 mimeMessage.From.Add(mailboxAddressFrom);
 
                 MailboxAddress mailboxAddressTo = new MailboxAddress("User", model.Email);
@@ -59,7 +59,7 @@ namespace NotikaIdentityEmail.Controllers
 
                 SmtpClient client = new SmtpClient();
                 client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("projekursapi@gmail.com", "pedwmvujhbzguohq");
+                client.Authenticate("deneme@gmail.com", "asdjaeeelsdbae");
                 client.Send(mimeMessage);
                 client.Disconnect(true);
 
@@ -74,6 +74,7 @@ namespace NotikaIdentityEmail.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
             }
+
 
             return View();
         }

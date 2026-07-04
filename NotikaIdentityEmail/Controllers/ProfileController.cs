@@ -9,6 +9,7 @@ namespace NotikaIdentityEmail.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+
         private readonly UserManager<AppUser> _userManager;
         public ProfileController(UserManager<AppUser> userManager)
         {
@@ -16,8 +17,10 @@ namespace NotikaIdentityEmail.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> EditProfile()
         {
+
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             UserEditViewModel userEditViewModel = new UserEditViewModel();
             userEditViewModel.Name = values.Name;
@@ -31,8 +34,10 @@ namespace NotikaIdentityEmail.Controllers
         }
 
         [HttpPost]
+
         public async Task<IActionResult> EditProfile(UserEditViewModel model)
         {
+
             if (model.Password == model.PasswordConfirm)
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);

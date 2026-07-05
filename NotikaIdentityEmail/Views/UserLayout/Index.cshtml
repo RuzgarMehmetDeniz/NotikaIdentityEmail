@@ -1,31 +1,22 @@
-﻿<!doctype html>
+﻿﻿@{
+Layout = null;
+}
+<!doctype html>
 <html class="no-js" lang="tr">
 
 @await Component.InvokeAsync("_HeadUserLayoutComponentPartial")
 
 <body>
 
-    <!-- Üst Bar ve Logo Alanı -->
-    @await Component.InvokeAsync("_HeaderUserLayoutComponentPartial")
+	@await Component.InvokeAsync("_HeaderUserLayoutComponentPartial")
 
-    <!-- Mobil Menü -->
-    @await Component.InvokeAsync("_MobileMenuUserLayoutComponentPartial")
+	@await Component.InvokeAsync("_MobileMenuUserLayoutComponentPartial")
 
-    <!-- Ana Menü / Navbar (Genellikle bir wrapper class'ı ister) -->
-    <div class="main-menu-area mg-tb-40">
-        @await Component.InvokeAsync("_NavbarUserLayoutComponentPartial")
-    </div>
+	@await Component.InvokeAsync("_NavbarUserLayoutComponentPartial")
 
-    <!-- Breadcrumb (Sayfa başlığı ve yolu) -->
-    @await Component.InvokeAsync("_BreadCombUserLayoutComponentPartial")
+	@RenderBody()
 
-    <!-- Ana İçerik (Inbox tablosunun geleceği yer) -->
-    <div class="container">
-        @RenderBody()
-    </div>
-
-    <!-- Alt Bilgi / Footer -->
-    @await Component.InvokeAsync("_FooterUserLayoutComponentPartial")
+	@await Component.InvokeAsync("_FooterUserLayoutComponentPartial")
 
 </body>
 </html>

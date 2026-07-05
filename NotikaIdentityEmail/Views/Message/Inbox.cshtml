@@ -68,6 +68,26 @@
                                             {
                                                 <td><span class="label label-primary"> @item.CategoryName </span> </td>
                                             }
+                                            if (item.CategoryName == "Gelen Kutusu")
+                                            {
+                                                <td><span class="label label-primary"> @item.CategoryName </span> </td>
+                                            }
+                                            if (item.CategoryName == "İş / Projeler")
+                                            {
+                                                <td><span class="label label-primary"> @item.CategoryName </span> </td>
+                                            }
+                                            if (item.CategoryName == "Güncellemeler")
+                                            {
+                                                <td><span class="label label-primary"> @item.CategoryName </span> </td>
+                                            }
+                                            if (item.CategoryName == "Forumlar")
+                                            {
+                                                <td><span class="label label-primary"> @item.CategoryName </span> </td>
+                                            }
+                                            if (item.CategoryName == "Spam / Gereksiz")
+                                            {
+                                                <td><span class="label label-primary"> @item.CategoryName </span> </td>
+                                            }
                                         }
                                         <td class="text-right mail-date">@item.SendDate.ToString("dd MMMM yyyy")</td>
                                     </tr>

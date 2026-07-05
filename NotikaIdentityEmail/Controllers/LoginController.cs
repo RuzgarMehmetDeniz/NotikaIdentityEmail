@@ -33,12 +33,6 @@ namespace NotikaIdentityEmail.Controllers
                 return View(model);
             }
 
-            if (!value.EmailConfirmed)
-            {
-                ModelState.AddModelError(string.Empty, "E-Mail Adresinizi henüz onaylanmamış.");
-                return View(model);
-            }
-
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
             if (result.Succeeded)
             {

@@ -31,7 +31,7 @@ namespace NotikaIdentityEmail.ViewComponents.NavbarHeaderViewComponents
                              SendDate = message.SendDate,
                              MessageDetail = message.MessageDetail
                          };
-            return View(values.ToList());
+            return View(values.Take(5).ToList());
         }
     }
 }

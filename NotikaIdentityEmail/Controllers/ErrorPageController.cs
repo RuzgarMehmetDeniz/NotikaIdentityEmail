@@ -2,7 +2,6 @@
 
 namespace NotikaIdentityEmail.Controllers
 {
-
     public class ErrorPageController : Controller
     {
         [Route("Error/404")]

@@ -6,7 +6,6 @@ using NotikaIdentityEmail.Entities;
 
 namespace NotikaIdentityEmail.Controllers
 {
-
     public class CommentController : Controller
     {
         private readonly EmailContext _context;

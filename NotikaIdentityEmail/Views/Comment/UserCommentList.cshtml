@@ -23,6 +23,7 @@
                                 <th>Kullanıcı</th>
                                 <th>Yorum</th>
                                 <th>Durum</th>
+                                <th>Toksik</th>
                                 <th>Sil</th>
                                 <th>Pasif Yap</th>
                                 <th>Yorumu Onayla</th>
@@ -36,8 +37,9 @@
                                     <td>@item.CommentDetail</td>
                                     <td>@item.CommentStatus</td>
                                     <td><a href="/Comment/DeleteComment/@item.CommentId/" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Comment/UpdateComment/@item.CommentId/" class="btn btn-warning">Pasif Yap</a></td>
-                                    <td><a href="/Comment/UpdateComment/@item.CommentId/" class="btn btn-primary">Yorumu Onayla</a></td>
+                                    <td><a href="/Comment/CommentStatusChangeToToxic/@item.CommentId/" class="btn btn-danger">Toksik</a></td>
+                                    <td><a href="/Comment/CommentStatusChangeToTPassive/@item.CommentId/" class="btn btn-warning">Pasif Yap</a></td>
+                                    <td><a href="/Comment/CommentStatusChangeToTActive/@item.CommentId/" class="btn btn-primary">Yorumu Onayla</a></td>
                                 </tr>
                             }
                         </table>

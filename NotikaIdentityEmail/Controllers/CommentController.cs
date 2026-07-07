@@ -154,5 +154,35 @@ namespace NotikaIdentityEmail.Controllers
 
             }
         }
+
+        public IActionResult DeleteComment(int id)
+        {
+            var comment = _context.Comments.Find(id);
+
+            _context.Comments.Remove(comment);
+            _context.SaveChanges();
+            return RedirectToAction("UserCommentList");
+        }
+        public IActionResult CommentStatusChangeToToxic(int id)
+        {
+            var comment = _context.Comments.Find(id);
+            comment.CommentStatus = "Toxic Yorum";
+            _context.SaveChanges();
+            return RedirectToAction("UserCommentList");
+        }
+        public IActionResult CommentStatusChangeToTPassive(int id)
+        {
+            var comment = _context.Comments.Find(id);
+            comment.CommentStatus = "Yorum Kaldırıldı";
+            _context.SaveChanges();
+            return RedirectToAction("UserCommentList");
+        }
+        public IActionResult CommentStatusChangeToTActive(int id)
+        {
+            var comment = _context.Comments.Find(id);
+            comment.CommentStatus = "Yorum Onaylandı";
+            _context.SaveChanges();
+            return RedirectToAction("UserCommentList");
+        }
     }
 }

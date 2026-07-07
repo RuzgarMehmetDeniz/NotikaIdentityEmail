@@ -171,6 +171,7 @@ namespace NotikaIdentityEmail.Controllers
             _context.SaveChanges();
             return RedirectToAction("UserCommentList");
         }
+
         public IActionResult CommentStatusChangeToTPassive(int id)
         {
             var comment = _context.Comments.Find(id);

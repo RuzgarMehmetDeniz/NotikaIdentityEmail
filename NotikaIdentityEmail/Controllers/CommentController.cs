@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace NotikaIdentityEmail.Controllers
             var values = _context.Comments.Include(x => x.AppUser).ToList();
             return View(values);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult UserCommentList()
         {
             var values = _context.Comments.Include(x => x.AppUser).ToList();

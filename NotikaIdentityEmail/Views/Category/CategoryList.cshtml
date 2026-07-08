@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Category>
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="form-element-area" style="padding: 20px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list" style="background: #fff; padding: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+
+                    <div class="basic-tb-hd" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 20px;">
+                        <h2 style="margin: 0; color: #333; font-weight: 600; font-size: 20px;">Kategori Listesi</h2>
+                        <a href="/Category/CreateCategory/" class="btn btn-success" style="background-color: #00c292; border-color: #00c292; border-radius: 4px; font-weight: 600; padding: 8px 16px;">
+                            <i class="notika-icon notika-plus-sign"></i> Yeni Kategori Girişi
+                        </a>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover" style="margin-bottom: 0;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #e9ecef;">
+                                    <th style="width: 80px; text-align: center; color: #555; font-weight: 600; padding: 12px;">#</th>
+                                    <th style="color: #555; font-weight: 600; padding: 12px;">Kategori Adı</th>
+                                    <th style="width: 150px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Durum</th>
+                                    <th style="width: 120px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Sil</th>
+                                    <th style="width: 120px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr style="border-bottom: 1px solid #f1f1f1; vertical-align: middle;">
+                                        <td style="text-align: center; font-weight: bold; color: #888; padding: 14px 12px;">@count</td>
+                                        <td style="font-weight: 500; color: #333; padding: 14px 12px;">@item.CategoryName</td>
+                                        <td style="text-align: center; padding: 14px 12px;">
+                                            @if (item.CategoryStatus)
+                                            {
+                                                <span class="label label-success" style="background-color: #00c292; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger" style="background-color: #fb9678; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Pasif</span>
+                                            }
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Category/DeleteCategory/@item.CategoryId/" class="btn btn-danger" style="background-color: #fb9678; border-color: #fb9678; border-radius: 4px; padding: 5px 15px; font-size: 13px;">
+                                                <i class="notika-icon notika-trash"></i> Sil
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Category/UpdateCategory/@item.CategoryId/" class="btn btn-info" style="background-color: #03a9f3; border-color: #03a9f3; border-radius: 4px; padding: 5px 15px; font-size: 13px; color: #fff;">
+                                                <i class="notika-icon notika-edit"></i> Güncelle
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

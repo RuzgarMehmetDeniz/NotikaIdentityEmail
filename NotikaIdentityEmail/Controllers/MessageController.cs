@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NotikaIdentityEmail.Context;
 using NotikaIdentityEmail.Entities;
 using NotikaIdentityEmail.Models.MessageViewModels;
+using X.PagedList.Extensions;
 
 namespace NotikaIdentityEmail.Controllers
 {
@@ -17,64 +18,61 @@ namespace NotikaIdentityEmail.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Inbox()
+        public async Task<IActionResult> Inbox(int page = 1)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            int pageSize = 10; // Her sayfada gösterilecek mesaj sayısı
 
-            var values = (from m in _context.Messages
-                          join u in _context.Users
-                          on m.SenderEmail equals u.Email into userGroup
-                          from sender in userGroup.DefaultIfEmpty()
+            var query = from m in _context.Messages
+                        join u in _context.Users on m.SenderEmail equals u.Email into userGroup
+                        from sender in userGroup.DefaultIfEmpty()
+                        join c in _context.Categories on m.CategoryId equals c.CategoryId into categoryGroup
+                        from category in categoryGroup.DefaultIfEmpty()
+                        where m.ReceiverEmail == user.Email
+                        orderby m.SendDate descending // En yeni mesajlar üstte görünsün
+                        select new MessageWithSenderInfoViewModel
+                        {
+                            MessageId = m.MessageId,
+                            MessageDetail = m.MessageDetail,
+                            Subject = m.Subject,
+                            SendDate = m.SendDate,
+                            SenderEmail = m.SenderEmail,
+                            SenderName = sender != null ? sender.Name : "Bilinmeyen",
+                            SenderSurname = sender != null ? sender.Surname : "Kullanıcı",
+                            CategoryName = category != null ? category.CategoryName : "Kategori Yok"
+                        };
 
-                          join c in _context.Categories
-                          on m.CategoryId equals c.CategoryId into categoryGroup
-                          from category in categoryGroup.DefaultIfEmpty()
-
-                          where m.ReceiverEmail == user.Email
-                          select new MessageWithSenderInfoViewModel
-                          {
-
-                              MessageId = m.MessageId,
-                              MessageDetail = m.MessageDetail,
-                              Subject = m.Subject,
-                              SendDate = m.SendDate,
-                              SenderEmail = m.SenderEmail,
-                              SenderName = sender != null ? sender.Name : "Bilinmeyen",
-                              SenderSurname = sender != null ? sender.Surname : "Kullanıcı",
-                              CategoryName = category != null ? category.CategoryName : "Kategori Yok"
-                          }).ToList();
+            // ToList() yerine ToPagedList() kullanarak veritabanı seviyesinde sayfalama yapıyoruz
+            var values = query.ToPagedList(page, pageSize);
 
             return View(values);
         }
 
-        public async Task<IActionResult> Sendbox()
+        public async Task<IActionResult> Sendbox(int page = 1)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            int pageSize = 10; // Her sayfada gösterilecek mesaj sayısı
 
+            var query = from m in _context.Messages
+                        join u in _context.Users on m.ReceiverEmail equals u.Email into userGroup
+                        from receiver in userGroup.DefaultIfEmpty()
+                        join c in _context.Categories on m.CategoryId equals c.CategoryId into categoryGroup
+                        from category in categoryGroup.DefaultIfEmpty()
+                        where m.SenderEmail == user.Email
+                        orderby m.SendDate descending // En yeni mesajlar üstte görünsün
+                        select new MessageWithReceiverInfoViewModel
+                        {
+                            MessageId = m.MessageId,
+                            MessageDetail = m.MessageDetail,
+                            Subject = m.Subject,
+                            SendDate = m.SendDate,
+                            ReceiverEmail = m.ReceiverEmail,
+                            ReceiverName = receiver != null ? receiver.Name : "Bilinmeyen",
+                            ReceiverSurname = receiver != null ? receiver.Surname : "Kullanıcı",
+                            CategoryName = category != null ? category.CategoryName : "Kategori Yok"
+                        };
 
-            var values = (from m in _context.Messages
-                          join u in _context.Users
-                          on m.ReceiverEmail equals u.Email into userGroup
-                          from receiver in userGroup.DefaultIfEmpty()
-
-                          join c in _context.Categories
-                          on m.CategoryId equals c.CategoryId into categoryGroup
-                          from category in categoryGroup.DefaultIfEmpty()
-
-
-                          where m.SenderEmail == user.Email
-                          select new MessageWithReceiverInfoViewModel
-                          {
-
-                              MessageId = m.MessageId,
-                              MessageDetail = m.MessageDetail,
-                              Subject = m.Subject,
-                              SendDate = m.SendDate,
-                              ReceiverEmail = m.ReceiverEmail,
-                              ReceiverName = receiver != null ? receiver.Name : "Bilinmeyen",
-                              ReceiverSurname = receiver != null ? receiver.Surname : "Kullanıcı",
-                              CategoryName = category != null ? category.CategoryName : "Kategori Yok"
-                          }).ToList();
+            var values = query.ToPagedList(page, pageSize);
 
             return View(values);
         }

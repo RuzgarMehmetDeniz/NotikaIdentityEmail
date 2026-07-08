@@ -1,4 +1,4 @@
-﻿﻿@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @model List<Comment>
 
 @{
@@ -7,43 +7,86 @@
     int count = 0;
 }
 
-<div class="form-element-area">
+<div class="form-element-area" style="padding: 20px 0;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="form-element-list">
-                    <div class="basic-tb-hd">
-                        <h2>Yorum Listesi</h2>
-                    </div>
-                    <div class="row">
+                <div class="form-element-list" style="background: #fff; padding: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
 
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>#</th>
-                                <th>Kullanıcı</th>
-                                <th>Yorum</th>
-                                <th>Durum</th>
-                                <th>Toksik</th>
-                                <th>Sil</th>
-                                <th>Pasif Yap</th>
-                                <th>Yorumu Onayla</th>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-                                count++;
-                                <tr>
-                                    <td>@count</td>
-                                    <td>@item.AppUser.Name @item.AppUser.Surname</td>
-                                    <td>@item.CommentDetail</td>
-                                    <td>@item.CommentStatus</td>
-                                    <td><a href="/Comment/DeleteComment/@item.CommentId/" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Comment/CommentStatusChangeToToxic/@item.CommentId/" class="btn btn-danger">Toksik</a></td>
-                                    <td><a href="/Comment/CommentStatusChangeToTPassive/@item.CommentId/" class="btn btn-warning">Pasif Yap</a></td>
-                                    <td><a href="/Comment/CommentStatusChangeToTActive/@item.CommentId/" class="btn btn-primary">Yorumu Onayla</a></td>
+                    <div class="basic-tb-hd" style="border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 20px;">
+                        <h2 style="margin: 0; color: #333; font-weight: 600; font-size: 20px;">Yorum Listesi</h2>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover" style="margin-bottom: 0;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #e9ecef;">
+                                    <th style="width: 60px; text-align: center; color: #555; font-weight: 600; padding: 12px;">#</th>
+                                    <th style="width: 180px; color: #555; font-weight: 600; padding: 12px;">Kullanıcı</th>
+                                    <th style="color: #555; font-weight: 600; padding: 12px;">Yorum</th>
+                                    <th style="width: 120px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Durum</th>
+                                    <th style="width: 90px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Sil</th>
+                                    <th style="width: 100px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Toksik</th>
+                                    <th style="width: 110px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Pasif Yap</th>
+                                    <th style="width: 140px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Yorumu Onayla</th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr style="border-bottom: 1px solid #f1f1f1; vertical-align: middle;">
+                                        <td style="text-align: center; font-weight: bold; color: #888; padding: 14px 12px;">@count</td>
+                                        <td style="font-weight: 600; color: #444; padding: 14px 12px;">
+                                            <i class="notika-icon notika-support" style="color: #00c292; margin-right: 5px;"></i> @item.AppUser.Name @item.AppUser.Surname
+                                        </td>
+                                        <td style="color: #666; font-size: 13px; padding: 14px 12px; max-width: 300px; word-wrap: break-word;">
+                                            @item.CommentDetail
+                                        </td>
+                                        <td style="text-align: center; padding: 14px 12px;">
+                                            @if (item.CommentStatus == "Yorum Onaylandı" || item.CommentStatus == "True")
+                                            {
+                                                <span class="label label-success" style="background-color: #00c292; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Onaylı</span>
+                                            }
+                                            else if (item.CommentStatus == "Yorum Kaldırıldı")
+                                            {
+                                                <span class="label label-danger" style="background-color: #d9534f; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Yorum Kaldırıldı</span>
+                                            }
+                                            else if (item.CommentStatus == "Toxic Yorum")
+                                            {
+                                                <span class="label label-danger" style="background-color: #d9534f; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Toksik</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-warning" style="background-color: #fb9678; padding: 5px 10px; border-radius: 12px; font-size: 11px;">Pasif</span>
+                                            }
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Comment/DeleteComment/@item.CommentId/" class="btn btn-danger" style="background-color: #fc4b6c; border-color: #fc4b6c; border-radius: 4px; padding: 5px 12px; font-size: 12px;">
+                                                <i class="notika-icon notika-trash"></i>
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Comment/CommentStatusChangeToToxic/@item.CommentId/" class="btn btn-danger" style="background-color: #4c5667; border-color: #4c5667; border-radius: 4px; padding: 5px 12px; font-size: 12px; color: #fff;">
+                                                <i class="notika-icon notika-close"></i> Toksik
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Comment/CommentStatusChangeToTPassive/@item.CommentId/" class="btn btn-warning" style="background-color: #fb9678; border-color: #fb9678; border-radius: 4px; padding: 5px 12px; font-size: 12px; color: #fff;">
+                                                <i class="notika-icon notika-eye-off"></i> Gizle
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Comment/CommentStatusChangeToTActive/@item.CommentId/" class="btn btn-primary" style="background-color: #00c292; border-color: #00c292; border-radius: 4px; padding: 5px 12px; font-size: 12px; color: #fff; font-weight: 600;">
+                                                <i class="notika-icon notika-checked"></i> Onayla
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

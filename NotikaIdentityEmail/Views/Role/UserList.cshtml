@@ -6,38 +6,55 @@
     int count = 0;
 }
 
-
-<div class="form-element-area">
+<div class="form-element-area" style="padding: 20px 0;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="form-element-list">
-                    <div class="basic-tb-hd">
-                        <h2>Kullanıcı Listesi</h2>
-                    </div>
-                    <div class="row">
+                <div class="form-element-list" style="background: #fff; padding: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
 
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>#</th>
-                                <th>Ad Soyad</th>
-                                <th>Kullanıcı Adı</th>
-                                <th>Kullanıcı Email</th>
-                                <th>Rol Ata</th>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-                                count++;
-                                <tr>
-                                    <td>@count</td>
-                                    <td>@item.Name @item.Surname</td>
-                                    <td>@item.UserName</td>
-                                    <td>@item.Email</td>
-                                    <td><a href="/Role/AssignRole/@item.Id/" class="btn btn-warning">Rol Ata</a></td>
+                    <!-- Başlık Alanı -->
+                    <div class="basic-tb-hd" style="border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 20px;">
+                        <h2 style="margin: 0; color: #333; font-weight: 600; font-size: 20px;">
+                            <i class="notika-icon notika-social" style="color: #00c292; margin-right: 5px;"></i> Kullanıcı Listesi
+                        </h2>
+                    </div>
+
+                    <!-- Tablo Alanı -->
+                    <div class="table-responsive">
+                        <table class="table table-hover" style="margin-bottom: 0;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #e9ecef;">
+                                    <th style="width: 80px; text-align: center; color: #555; font-weight: 600; padding: 12px;">#</th>
+                                    <th style="color: #555; font-weight: 600; padding: 12px;">Ad Soyad</th>
+                                    <th style="color: #555; font-weight: 600; padding: 12px;">Kullanıcı Adı</th>
+                                    <th style="color: #555; font-weight: 600; padding: 12px;">Kullanıcı Email</th>
+                                    <th style="width: 150px; text-align: center; color: #555; font-weight: 600; padding: 12px;">Rol İşlemleri</th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr style="border-bottom: 1px solid #f1f1f1; vertical-align: middle;">
+                                        <td style="text-align: center; font-weight: bold; color: #888; padding: 14px 12px;">@count</td>
+                                        <td style="font-weight: 600; color: #333; padding: 14px 12px;">
+                                            <i class="notika-icon notika-support" style="color: #00c292; margin-right: 6px; font-size: 14px;"></i> @item.Name @item.Surname
+                                        </td>
+                                        <td style="color: #555; font-weight: 500; padding: 14px 12px;">@@@item.UserName</td>
+                                        <td style="color: #666; padding: 14px 12px;">
+                                            <span style="border-bottom: 1px dashed #ddd; padding-bottom: 2px;">@item.Email</span>
+                                        </td>
+                                        <td style="text-align: center; padding: 12px;">
+                                            <a href="/Role/AssignRole/@item.Id/" class="btn btn-warning" style="background-color: #ffbc34; border-color: #ffbc34; color: #fff; border-radius: 4px; padding: 6px 16px; font-size: 13px; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                                <i class="notika-icon notika-key" style="font-size: 12px; margin-right: 3px;"></i> Rol Ata
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>

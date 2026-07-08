@@ -5,100 +5,117 @@
     Layout = "~/Views/UserLayout/Index.cshtml";
 }
 
-<div class="form-element-area">
+<div class="form-element-area" style="padding: 20px 0;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="form-element-list">
-                    <div class="basic-tb-hd">
-                        <h2>Profilini Düzenle</h2>
-                        <p>Bilgileri eksiksiz olarak doldurup güncelleme işlemini yapabilirsiniz.</p>
+                <div class="form-element-list" style="background: #fff; padding: 40px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+
+                    <div class="basic-tb-hd" style="border-bottom: 2px solid #f1f1f1; padding-bottom: 15px; margin-bottom: 30px;">
+                        <h2 style="margin: 0; color: #333; font-weight: 600; font-size: 20px;">
+                            <i class="notika-icon notika-support" style="color: #00c292; margin-right: 8px;"></i> Profilini Düzenle
+                        </h2>
+                        <p style="color: #888; font-size: 13px; margin-top: 5px; margin-bottom: 0;">Bilgileri eksiksiz olarak doldurup güncelleme işlemini yapabilirsiniz.</p>
                     </div>
+
                     <form method="post">
                         <div class="row">
 
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-support"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="Name" placeholder="Adınız">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Adınız</label>
+                                        <input type="text" class="form-control" asp-for="Name" placeholder="Adınız" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-support"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="Surname" placeholder="Soyadınız">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Soyadınız</label>
+                                        <input type="text" class="form-control" asp-for="Surname" placeholder="Soyadınız" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-edit"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="City" placeholder="Şehriniz">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Kullanıcı Adı</label>
+                                        <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı Adınız" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-house"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="ImageUrl" placeholder="Fotoğraf URL Bilgisi">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Şehir</label>
+                                        <input type="text" class="form-control" asp-for="City" placeholder="Şehriniz" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-mail"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı Adınız">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Email Adresi</label>
+                                        <input type="email" class="form-control" asp-for="Email" placeholder="Email Adresiniz" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-phone"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="Email" placeholder="Email Adresiniz">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Telefon Numarası</label>
+                                        <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Telefon Numaranız" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-picture"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Telefon Numaranız">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Profil Fotoğrafı URL</label>
+                                        <input type="text" class="form-control" asp-for="ImageUrl" placeholder="Fotoğraf URL Bilgisi" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-secure"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="password" class="form-control" asp-for="Password" placeholder="Şifreniz">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Yeni Şifre</label>
+                                        <input type="password" class="form-control" asp-for="Password" placeholder="Şifreniz" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top: 15px;">
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp" style="color: #00c292;"><i class="notika-icon notika-secure"></i></div>
                                     <div class="nk-int-st">
-                                        <input type="password" class="form-control" asp-for="PasswordConfirm" placeholder="Şifre Tekrar">
+                                        <label style="font-weight: 600; color: #555; margin-bottom: 5px; font-size: 13px;">Şifre Tekrar</label>
+                                        <input type="password" class="form-control" asp-for="PasswordConfirm" placeholder="Şifre Tekrar" style="border-bottom: 1px solid #ccc;">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <button class="btn btn-success">Bilgileri Güncelle</button>
-                                    </div>
-                                </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px; text-align: right;">
+                                <button type="submit" class="btn btn-success" style="background-color: #00c292; border-color: #00c292; border-radius: 4px; font-weight: 600; padding: 10px 24px; font-size: 14px; transition: all 0.3s ease;">
+                                    <i class="notika-icon notika-checked"></i> Değişiklikleri Kaydet
+                                </button>
                             </div>
-
-                           
 
                         </div>
                     </form>

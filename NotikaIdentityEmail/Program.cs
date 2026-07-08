@@ -18,7 +18,6 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddErrorDescriber<CustomIdentityValidator>()
     .AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider);
 
-
 // JWT Ayarlarý
 builder.Services.Configure<JwtSettingsModel>(builder.Configuration.GetSection("JwtSettingsKey"));
 
